@@ -13,9 +13,25 @@
 
 <h2 align="center">Install</h2>
 
+npm 
+ 
 ```bash
-npm install --save-dev golang-wasm-async-loader
+# master
+npm install --save-dev https://github.com/wondersquall/webpack-golang-wasm-async-loader
+# or Branch
+npm install --save-dev https://github.com/wondersquall/webpack-golang-wasm-async-loader#develop
 ```
+
+yarn
+
+```bash
+# master
+yarn add --dev https://github.com/wondersquall/webpack-golang-wasm-async-loader
+# or Branch
+yarn add --dev https://github.com/wondersquall/webpack-golang-wasm-async-loader#feature/macenv
+
+```
+
 
 This is a loader for [webpack](https://webpack.js.org/) that is used for generating [WebAssembly](https://webassembly.org/) (aka WASM) bundles from [Go](https://golang.org).
 
