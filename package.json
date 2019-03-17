@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "build:watch": "tsc --watch"
+    "build:watch": "tsc --watch",
+    "postinstall": "postinstall-build dist"
   },
   "keywords": [
     "go",
@@ -24,7 +25,8 @@
     "typescript": "^3.2.4"
   },
   "dependencies": {
-    "@types/webpack": "^4.4.23"
+    "@types/webpack": "^4.4.23",
+    "postinstall-build": "^5.0.3"
   },
   "peerDependencies": {
     "webpack": "^4.29.0"
