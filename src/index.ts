@@ -6,7 +6,19 @@ import { getOptions } from 'loader-utils';
 
 
 const proxyBuilder = (filename: string) => `
-export default gobridge(fetch('${filename}').then(response => response.arrayBuffer()));
+var goBridgeExport = null
+if(process.versions.hasOwnProperty("electron")){
+  const fs = require('fs');
+  goBridgeExport = gobridge(new Promise((resolve, reject)=>{
+    fs.readFile( __dirname + '/${filename}', null, (err, data) => {
+      if (err) { reject(err); return; }; 
+      resolve(data);
+    });
+  }));
+}else{
+  goBridgeExport = gobridge(fetch('${filename}').then(response => response.arrayBuffer()));  
+}
+export default goBridgeExport
 `;
 
 const getGoBin = (root: string) => `${root}/bin/go`;
