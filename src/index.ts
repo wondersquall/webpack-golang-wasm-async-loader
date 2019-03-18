@@ -7,7 +7,7 @@ import { getOptions } from 'loader-utils';
 
 const proxyBuilder = (filename: string) => `
 var goBridgeExport = null
-if(process.versions.hasOwnProperty("electron")){
+if(process.versions.hasOwnProperty("electron")&&location.href.match(/^http/) == null){
   const fs = require('fs');
   goBridgeExport = gobridge(new Promise((resolve, reject)=>{
     fs.readFile( __dirname + '/${filename}', null, (err, data) => {
