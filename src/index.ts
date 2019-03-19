@@ -7,7 +7,16 @@ import { getOptions } from 'loader-utils';
 
 const proxyBuilder = (filename: string) => `
 var goBridgeExport = null
-if(process.versions.hasOwnProperty("electron")&&location.href.match(/^http/) == null){
+var loadLocalFile = false;
+
+// process.platform != "browser";
+if (typeof process !== 'undefined'&&typeof process.versions !== 'undefined'){
+  if(process.versions.hasOwnProperty("electron") && location.href.match(/^http/) == null){
+    loadLocalFile = true;
+  }
+}
+
+if(loadLocalFile){
   const fs = require('fs');
   goBridgeExport = gobridge(new Promise((resolve, reject)=>{
     fs.readFile( __dirname + '/${filename}', null, (err, data) => {
